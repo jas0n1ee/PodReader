@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="balance-info">
+    <h3>Balance Information</h3>
+    <p>Available Balance: {{ balance_info.available_balance }}</p>
+    <p>Voucher Balance: {{ balance_info.voucher_balance }}</p>
+    <p>Cash Balance: {{ balance_info.cash_balance }}</p>
+</div>
+
+<form action="{{ url_for('index') }}" method="post">
+    <label for="youtube_url">YouTube URL:</label>
+    <input type="url" id="youtube_url" name="youtube_url" required>
+    
+    <label for="reading_time">Summary Length:</label>
+    <select id="reading_time" name="reading_time" required>
+        <option value="1">1 minute</option>
+        <option value="5">5 minutes</option>
+        <option value="10">10 minutes</option>
+    </select>
+    
+    <div class="form-buttons">
+        <button type="submit">Generate Summary</button>
+        <a href="{{ url_for('history') }}" class="button">View Summary History</a>
+    </div>
+</form>
+
+{% if error %}
+<div class="error-message">
+    <p>Error: {{ error }}</p>
+</div>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Summary History</h2>
+{% if history %}
+    <ul>
+    {% for item in history %}
+        <li>
+            <strong>Video Title:</strong> {{ item.video_title }}<br>
+            <strong>YouTube URL:</strong> {{ item.youtube_url }}<br>
+            <strong>Reading Time:</strong> {{ item.reading_time }} minutes<br>
+            <strong>Generated on:</strong> {{ item.timestamp }}<br>
+            <div class="button-group">
+                <a href="{{ url_for('download', file_type='history_summary', timestamp=item.timestamp) }}" class="button">Download Summary</a>
+                <a href="{{ url_for('delete_summary', timestamp=item.timestamp) }}" class="button button-delete">Delete</a>
+            </div>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No summaries in history.</p>
+{% endif %}
+<a href="{{ url_for('index') }}" class="button">Back to Home</a>
+{% endblock %}

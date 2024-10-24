@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Summary</h2>
+<div class="summary">
+    {{ summary_html|safe }}
+</div>
+
+<div class="download-buttons">
+    <a href="{{ url_for('download', file_type='summary', content=summary_html) }}" class="button">Download Summary (Markdown)</a>
+    <a href="{{ url_for('download', file_type='transcript', content=transcript) }}" class="button">Download Full Transcript (Markdown)</a>
+</div>
+
+<div class="button-group">
+    <a href="{{ url_for('history') }}" class="button">View Summary History</a>
+    <a href="{{ url_for('index') }}" class="button">Generate Another Summary</a>
+</div>
+{% endblock %}
